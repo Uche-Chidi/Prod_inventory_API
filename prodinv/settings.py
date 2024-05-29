@@ -24,7 +24,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["prod-inventory-api.onrender.com"]
+ALLOWED_HOSTS = ['.prod-inventory-api.onrender.com', '*']
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    "corsheaders",
 
 ]
 
@@ -47,6 +48,7 @@ WHITENOISE_MANIFEST_STRICT=False
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -89,6 +91,11 @@ WSGI_APPLICATION = 'prodinv.wsgi.application'
 DATABASES ={
     'default': dj_database_url.parse(env('DATABASE_URL'))
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
 STORAGES = {
     # ...
