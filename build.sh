@@ -2,7 +2,7 @@
 
 set -o errexit
 
-pip3 install -r /prodinv/prodinv/requirements.txt
+pip3 install -r requirements.txt
 
 python manage.py collectstatic --no-input
 python manage.py makemigrations
